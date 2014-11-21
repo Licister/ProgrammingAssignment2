@@ -28,11 +28,12 @@ makeCacheMatrix <- function(x = matrix()) {
            getsolve = getsolve)
 }
 
-# cacheSolve gets the inverse of the matrix stored in 'x'. It will be NULL if it hasn't been calculated yet, or
+# cacheSolve returns the inverse of the matrix.
+# First, it gets the inverse of the matrix stored in cache. It will be NULL if it hasn't been calculated yet, or
 # an actual inverted matrix if it has. 
 # If the inverse isn't NULL, the function will return the inverted matrix and end the function. 
-# If it is NULL, it'll skip the 'if' statement, get the original matrix stored in 'x', and calculate the inverse. 
-# After that, it'll store it in 'x' so it can be accessed later, and finally it'll return the inverse.
+# If it is NULL, it'll skip the 'if' statement, get the original matrix from 'x', and calculate the inverse. 
+# After that, it'll store it in cache so it can be accessed later, and finally it'll return the inverse.
 
 cacheSolve <- function(x, ...) {
       
