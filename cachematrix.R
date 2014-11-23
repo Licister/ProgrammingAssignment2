@@ -1,8 +1,8 @@
 # These functions take a matrix and calculate its inverse. The inverse is then stored in cache so it
 # can be easily retrieved without the need to calculate it again. 
 
-# makeCacheMatrix stores a matrix and its inverse in a single object. The inverse is only stored after
-# cacheSolve is called, since the inverse is only calculated in cacheSolve. makeCacheMatrix allows 
+# makeCacheMatrix lets you store a matrix and its inverse in a single object. The inverse is only stored 
+# after cacheSolve is called, since the inverse is only calculated in cacheSolve. makeCacheMatrix allows 
 # cacheSolve to store the calculated inverse to avoid spending time calculating it again in the future.
 
 
@@ -17,15 +17,15 @@ makeCacheMatrix <- function(x = matrix()) {
       
       get <- function() {x}
       
-      setsolve <- function(solve) {
+      setinverse <- function(solve) {
             inv <<- solve
       }
       
-      getsolve <- function() {inv}                      
+      getinverse <- function() {inv}                      
       
       list(set = set, get = get,
-           setsolve = setsolve,
-           getsolve = getsolve)
+           setinverse = setinverse,
+           getinverse = getinverse)
 }
 
 # cacheSolve returns the inverse of the matrix.
@@ -37,7 +37,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
       
-      inv <- x$getsolve()
+      inv <- x$getinverse()
       
       if(!is.null(inv)) {
             message("getting cached data")
@@ -48,7 +48,7 @@ cacheSolve <- function(x, ...) {
       
       inv <- solve(data, ...)
       
-      x$setsolve(inv)
+      x$setinverse(inv)
       
       inv
 }
